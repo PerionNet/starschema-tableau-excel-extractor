@@ -1,0 +1,70 @@
+{
+  "name": "starschema-tableau-excel-extractor",
+  "version": "0.0.1",
+  "private": false,
+  "description": "Download Tableau reports in Excel format",
+  "keywords": [
+    "tableau",
+    "starschema"
+  ],
+  "bugs": "https://github.com/starschema/starschema-tableau-excel-extractor/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Zsolt R. Molnar",
+    "email": "molnarzs@starschema.ne"
+  },
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starschema/starschema-tableau-excel-extractor.git"
+  },
+  "homepage": "https://github.com/starschema/starschema-tableau-excel-extractor",
+  "engines": {
+    "node": ">= 0.10.x"
+  },
+  "main": "dist/cli/index.js",
+  "bin": {
+    "tableau-extract": "./dist/cli/index.js"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
+    "coffee-script": "^1.7.1",
+    "gulp": "^3.8.8",
+    "gulp-cached": "^1.0.1",
+    "gulp-coffee": "^2.2.0",
+    "gulp-coffeelint": "^0.5.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-debounced-watch": "^1.0.4",
+    "gulp-jshint": "^1.9.0",
+    "gulp-load-plugins": "^1.0.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-size": "^2.0.0",
+    "gulp-using": "0.0.1",
+    "gulp-util": "^3.0.6",
+    "gutil": "^1.6.4",
+    "mocha": "^2.3.2",
+    "rewire": "^2.5.1",
+    "should": "^7.1.1",
+    "sinon": "^1.16.1",
+    "sinon-as-promised": "^4.0.0",
+    "sinon-chai": "^2.8.0",
+    "timekeeper": "0.0.5",
+    "yargs": "^4.6.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.0.5",
+    "cldr-data": "^29.0.1",
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "csvtojson": "^0.5.3",
+    "globalize": "^1.1.1",
+    "lodash": "^4.11.1",
+    "request": "^2.72.0",
+    "stream-meter": "^1.0.3",
+    "winston": "^2.2.0",
+    "xlsx": "^0.8.0",
+    "xml2js": "^0.4.16"
+  }
+}
