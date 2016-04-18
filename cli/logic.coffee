@@ -14,7 +14,7 @@ getCliParams = ->
   program = require 'commander'
 
   program
-    .version('0.0.1')
+    .version('0.0.2')
     .description "Extract tableau reports in Excel format."
     .usage('[options] <url>')
     .option('-u, --username <username>', 'Tableau username')
