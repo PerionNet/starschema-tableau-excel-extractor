@@ -14,7 +14,7 @@ getCliParams = ->
   program = require 'commander'
 
   program
-    .version('0.0.2')
+    .version('0.0.3')
     .description "Extract tableau reports in Excel format."
     .usage('[options] <url>')
     .option('-u, --username <username>', 'Tableau username')
@@ -36,7 +36,7 @@ setGlobalConfig = (url) ->
 
 
 getViewSet = (url, username) ->
-  customViewRegex = ///(http[s]?:\/\/.*\/)[\#]?\/views\/(.*)\/(.*)\/#{username}\/([^\?]*)[\?]?.*///
+  customViewRegex = new RegExp "(http[s]?:\/\/.*\/)[\#]?\/views\/(.*)\/(.*)\/#{username}\/([^\?]*)[\?]?.*", 'i'
   parts = url.match customViewRegex
 
   # url looks like a custom view url

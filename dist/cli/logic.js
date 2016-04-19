@@ -19,7 +19,7 @@ _viewSet = null;
 getCliParams = function() {
   var program, ref;
   program = require('commander');
-  program.version('0.0.1').description("Extract tableau reports in Excel format.").usage('[options] <url>').option('-u, --username <username>', 'Tableau username').option('-p, --password <password>', 'Tableau password').parse(process.argv);
+  program.version('0.0.3').description("Extract tableau reports in Excel format.").usage('[options] <url>').option('-u, --username <username>', 'Tableau username').option('-p, --password <password>', 'Tableau password').parse(process.argv);
   if ((program.username != null) && (program.password != null) && (((ref = program.args) != null ? ref[0] : void 0) != null)) {
     return {
       username: program.username,
@@ -40,7 +40,7 @@ setGlobalConfig = function(url) {
 
 getViewSet = function(url, username) {
   var customViewRegex, parts;
-  customViewRegex = RegExp("(http[s]?:\\/\\/.*\\/)[\\#]?\\/views\\/(.*)\\/(.*)\\/" + username + "\\/([^\\?]*)[\\?]?.*");
+  customViewRegex = new RegExp("(http[s]?:\/\/.*\/)[\#]?\/views\/(.*)\/(.*)\/" + username + "\/([^\?]*)[\?]?.*", 'i');
   parts = url.match(customViewRegex);
   if (parts != null) {
     return {
