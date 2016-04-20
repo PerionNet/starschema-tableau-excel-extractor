@@ -11,7 +11,13 @@ npm install -g starschema-tableau-excel-extractor
 ## Usage
 
 ```
-tableau-extract  -u tableauUsername -p tableauPassword http://example.mytableau.com/#/views/MyWorkbook/MyView/myself/mycustomview
+tableau-extract  -u tableauUsername -p tableauPassword -s csvSeparator http://example.mytableau.com/#/views/MyWorkbook/MyView/myself/mycustomview
+```
+
+Full usage:
+
+```
+tableau-extract --help
 ```
 
 All the above parameters are mandatory. 

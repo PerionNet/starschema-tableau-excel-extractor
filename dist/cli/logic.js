@@ -19,11 +19,12 @@ _viewSet = null;
 getCliParams = function() {
   var program, ref;
   program = require('commander');
-  program.version('0.0.3').description("Extract tableau reports in Excel format.").usage('[options] <url>').option('-u, --username <username>', 'Tableau username').option('-p, --password <password>', 'Tableau password').parse(process.argv);
+  program.version('0.1.0').description("Extract tableau reports in Excel format.").usage('[options] <url>').option('-u, --username <username>', 'Tableau username').option('-p, --password <password>', 'Tableau password').option('-s, --separator <CSV separator>', 'CSV separator used by Tableau. If omitted, separator is auto-detected.').parse(process.argv);
   if ((program.username != null) && (program.password != null) && (((ref = program.args) != null ? ref[0] : void 0) != null)) {
     return {
       username: program.username,
       password: program.password,
+      separator: program.separator,
       viewUrl: program.args[0]
     };
   } else {
@@ -31,10 +32,10 @@ getCliParams = function() {
   }
 };
 
-setGlobalConfig = function(url) {
+setGlobalConfig = function(url, separator) {
   return GLOBAL.config = {
     tableauServer: url,
-    tableauVersion: '9.3'
+    tableauCsvSeparator: separator != null ? separator : 'auto'
   };
 };
 
@@ -67,7 +68,7 @@ getViewSet = function(url, username) {
 try {
   _params = getCliParams();
   _viewSet = getViewSet(_params.viewUrl, _params.username);
-  setGlobalConfig(_viewSet.serverUrl);
+  setGlobalConfig(_viewSet.serverUrl, _params.separator);
 } catch (error) {
   err = error;
   console.log(err.message.red);
@@ -83,6 +84,6 @@ Authenticate.authenticate(_params.username, _params.password).then(function(res)
   console.log(("Report " + file.filename + " has been created.").green);
   return process.exit(-1);
 })["catch"](function(err) {
-  console.log('Error', err);
+  console.trace();
   return process.exit(0);
 });

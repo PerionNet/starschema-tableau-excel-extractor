@@ -1,6 +1,6 @@
 {
   "name": "starschema-tableau-excel-extractor",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "private": false,
   "description": "Download Tableau reports in Excel format",
   "keywords": [
@@ -58,7 +58,7 @@
     "cldr-data": "^29.0.1",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "csvtojson": "^0.5.3",
+    "csvtojson": "starschema/node-csvtojson#2437216",
     "globalize": "^1.1.1",
     "lodash": "^4.11.1",
     "request": "^2.72.0",

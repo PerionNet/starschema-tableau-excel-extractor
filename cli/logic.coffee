@@ -14,25 +14,27 @@ getCliParams = ->
   program = require 'commander'
 
   program
-    .version('0.0.3')
+    .version('0.1.0')
     .description "Extract tableau reports in Excel format."
     .usage('[options] <url>')
     .option('-u, --username <username>', 'Tableau username')
     .option('-p, --password <password>', 'Tableau password')
+    .option('-s, --separator <CSV separator>', 'CSV separator used by Tableau. If omitted, separator is auto-detected.')
     .parse(process.argv)
 
   if program.username? and program.password? and program.args?[0]?
     username: program.username
     password: program.password
+    separator: program.separator
     viewUrl: program.args[0]
   else
     program.help()
 
 
-setGlobalConfig = (url) ->
+setGlobalConfig = (url, separator) ->
   GLOBAL.config =
     tableauServer: url
-    tableauVersion: '9.3'
+    tableauCsvSeparator: separator ? 'auto'
 
 
 getViewSet = (url, username) ->
@@ -58,7 +60,7 @@ getViewSet = (url, username) ->
 try
   _params = getCliParams()
   _viewSet = getViewSet _params.viewUrl, _params.username
-  setGlobalConfig _viewSet.serverUrl
+  setGlobalConfig _viewSet.serverUrl, _params.separator
 catch err
   console.log err.message.red
   process.exit 0
@@ -73,6 +75,6 @@ Authenticate.authenticate _params.username, _params.password
   console.log "Report #{file.filename} has been created.".green
   process.exit -1
 .catch (err) ->
-  console.log 'Error', err
+  console.trace()
   process.exit 0
 

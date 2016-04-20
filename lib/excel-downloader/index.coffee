@@ -22,7 +22,7 @@ class ExcelDownloader
 
 
   _getDelimiter: ->
-    if config.tableauVersion is '9.3' then ';' else ','
+    config.tableauCsvSeparator ? ';'
 
 
   _pipeCvsToJson: (readStream) ->
@@ -46,7 +46,6 @@ class ExcelDownloader
         reject {status: 'TOO_BIG_FILE', message: "Report size exceeded the supported maximum (#{config.maxCSVSize / 1024 / 1024} mb)"}
 
       converter.on "record_parsed", (jsonObj) =>
-        # if not (rowNum % 100) then console.log rowNum
         if rowNum is 0
           Logger.log "info", "Report has been generated. Started downloading and processing CSV data..."
           columnNames = @_getColumnNames jsonObj

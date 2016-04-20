@@ -31,11 +31,8 @@ ExcelDownloader = (function() {
   };
 
   ExcelDownloader.prototype._getDelimiter = function() {
-    if (config.tableauVersion === '9.3') {
-      return ';';
-    } else {
-      return ',';
-    }
+    var ref;
+    return (ref = config.tableauCsvSeparator) != null ? ref : ';';
   };
 
   ExcelDownloader.prototype._pipeCvsToJson = function(readStream) {
